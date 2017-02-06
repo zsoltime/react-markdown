@@ -1,0 +1,113 @@
+* {
+  box-sizing: inherit;
+}
+
+html,
+body,
+#app,
+.container {
+  height: 100%;
+}
+
+body {
+  background: #607d8b radial-gradient(ellipse closest-corner, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Lato, 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.editor {
+  background: rgba(255, 255, 255, 0.9);
+  border: 0;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: 'Source Code Pro', Menlo, Inconsolata, monospace;
+  font-size: 0.875rem;
+  font-weight: 300;
+  height: 30%;
+  line-height: 1.5;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.preview {
+  height: 70%;
+  padding: 0.5rem 1rem;
+}
+
+a {
+  color: #ffc107;
+  transition: .3s color ease
+}
+
+a:hover {
+  color: #ffd54f;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 auto 1rem;
+  padding-bottom: 0.25rem;
+}
+
+h1 {
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+p {
+  margin: 0 auto 1rem;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+}
+
+blockquote {
+  border-left: 0.25rem solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 1rem 0.25rem;
+  padding: 0 1rem;
+}
+
+ul, ol {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+}
+
+@media (min-width: 420px) and (orientation: landscape) {
+  .container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .editor,
+  .preview {
+    height: 100%;
+    width: 50%;
+  }
+}
