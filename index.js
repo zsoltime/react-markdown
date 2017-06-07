@@ -1,8 +1,8 @@
 class Previewer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      content: "# Markdown Previewer\nI'm using _markdown_ with React**JS**, woohoo.\n",
+      content: props.initialContent,
     };
     marked.setOptions({
       sanitize: true,
@@ -15,7 +15,7 @@ class Previewer extends React.Component {
     });
   }
   render() {
-    let markdown = marked(this.state.content);
+    const markdown = marked(this.state.content);
     return (
       <div className="container">
         <textarea
@@ -32,4 +32,17 @@ class Previewer extends React.Component {
   }
 }
 
-ReactDOM.render(<Previewer />, document.getElementById('app'));
+Previewer.defaultProps = {
+  initialContent: '',
+};
+
+Previewer.propTypes = {
+  initialContent: React.PropTypes.string,
+};
+
+const initialContent = "# Markdown Previewer\nI'm using _markdown_ with React**JS**, woohoo.\n";
+
+ReactDOM.render(
+  <Previewer initialContent={initialContent}/>,
+  document.getElementById('app')
+);
