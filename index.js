@@ -1,4 +1,28 @@
-class Previewer extends React.Component {
+const Editor = props => (
+  <textarea
+    className="editor"
+    onChange={event => props.onChange(event)}
+    defaultValue={props.content}
+  />
+);
+
+Editor.propTypes = {
+  onChange: React.PropTypes.func.isRequired,
+  content: React.PropTypes.string.isRequired,
+};
+
+const Preview = props => (
+  <div
+    className="preview"
+    dangerouslySetInnerHTML={{__html: props.markdown}}
+  />
+);
+
+Preview.propTypes = {
+  markdown: React.PropTypes.string.isRequired,
+};
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -8,6 +32,7 @@ class Previewer extends React.Component {
       sanitize: true,
       smartypants: true,
     });
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
     this.setState({
@@ -18,31 +43,29 @@ class Previewer extends React.Component {
     const markdown = marked(this.state.content);
     return (
       <div className="container">
-        <textarea
-          className="editor"
-          onChange={event => this.handleChange(event)}
-          defaultValue={this.state.content}
+        <Editor
+          content={this.state.content}
+          onChange={this.handleChange}
         />
-        <div
-          className="preview"
-          dangerouslySetInnerHTML={{__html: markdown}}
+        <Preview
+          markdown={markdown}
         />
       </div>
     );
   }
 }
 
-Previewer.defaultProps = {
+App.defaultProps = {
   initialContent: '',
 };
 
-Previewer.propTypes = {
+App.propTypes = {
   initialContent: React.PropTypes.string,
 };
 
-const initialContent = "# Markdown Previewer\nI'm using _markdown_ with React**JS**, woohoo.\n";
+const initialContent = "# Markdown App\nI'm using _markdown_ with React**JS**, woohoo.\n";
 
 ReactDOM.render(
-  <Previewer initialContent={initialContent}/>,
+  <App initialContent={initialContent}/>,
   document.getElementById('app')
 );
